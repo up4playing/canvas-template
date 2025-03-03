@@ -168,7 +168,7 @@ unit lobby
 		// Effect(image:FireballSoft, position:field.position+{30,70}, size:1000, framesPerSecond:12)
 		// Effect(image:GranadeExplosion, position:field.position+{0,-200}, size:1000)
 		// Effect(image:NukeCone, position:field.position+{0,-150}, size:1000)
-		field.effect = Effect(image:Nuke, size:1000)
+		// field.effect = Effect(image:Nuke, size:1000)
 		field.particleSystem = ParticleSystem(image:Spark, bursts:1, gravity:.5, minSpeed:10 maxSpeed:20, angleSpread:.5)
 		// playSound LobbyImpact
 		
