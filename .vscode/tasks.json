@@ -1,0 +1,23 @@
+// See https://go.microsoft.com/fwlink/?LinkId=733558
+// for the documentation about the tasks.json format
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Pull Core",
+			"type": "shell",
+			"command": "git subtree pull --prefix=lib/core --squash -m 'Update core' core-origin main",
+			"options": {
+				"cwd": "${workspaceFolder}"
+			}
+		},
+		{
+			"label": "Push Core",
+			"type": "shell",
+			"command": "git subtree push --prefix=lib/core core-origin main",
+			"options": {
+				"cwd": "${workspaceFolder}"
+			}
+		}
+	]
+}
