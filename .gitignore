@@ -1,0 +1,10 @@
+.DS_Store
+*.eventstream
+/.livetime/state.json
+/.livetime/navigation.json
+/.cursor/rules/
+/.github/copilot-instructions.md
+/docs/index.html
+/docs/blank.html
+/docs/*.js
+/backup/
