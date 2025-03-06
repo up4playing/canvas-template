@@ -24,22 +24,22 @@ immutable struct int
 		(((this % value) + value) % value)
 		
 	// The largest possible integer value
-	const maxValue = 2147483647
+	const important maxValue = 2147483647
 	
 	// The smallest possible integer value
-	const minValue = -2147483648
+	const important minValue = -2147483648
 	
 	// Indicates that the variable isn't defined at all, useful for imported data (e.g. from JSON)
 	const inline js int undefined := undefined
 	
 	// The remainer after a division by the given value. The sign stays the same.
-	inline js int remainder: int value // The value to divide by
+	important inline js int remainder: int value // The value to divide by
 		(this % value)
 		
 	// Returns true if the integer is not zero
 	inline js bool toBool := this
 	
-	inline js string toString := this?.toString()
+	important inline js string toString := this?.toString()
 		
 	implicit inline js Time toTime() this
 		
@@ -47,27 +47,27 @@ immutable struct int
 		
 	inline js string formatWithSpaces := this.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
 		
-	inline js string format: int minIntegerDigits = 1, bool grouping = false
+	important inline js string format: int minIntegerDigits = 1, bool grouping = false
 		this.toLocaleString("en-US", {minimumIntegerDigits:minIntegerDigits, useGrouping:grouping})
 		
 	// Returns the absolute value of the integer
-	inline js int abs
+	important inline js int abs
 		Math.abs(this)
 		
 	// Shift the bits of the int to the left. Excess bits shifted off to the left are discarded
-	inline js int shiftLeft: int count // The amount of bits to shift 
+	important inline js int shiftLeft: int count // The amount of bits to shift 
 		(this << count)
 	
 	// Shift the bits of the int to the right. Excess bits shifted off to the right are discarded
-	inline js int shiftRight: int count // The amount of bits to shift 
+	important inline js int shiftRight: int count // The amount of bits to shift 
 		(this >> count)
 		
 	// Perform a bitwise "or" operation
-	inline js int bitwiseOr: implicit int value // The value to perform the bitwise "or" with
+	important inline js int bitwiseOr: implicit int value // The value to perform the bitwise "or" with
 		(this | value)
 	
 	// Perform a bitwise "and" operation
-	inline js int bitwiseAnd: implicit int value // The value to perform the bitwise "and" with
+	important inline js int bitwiseAnd: implicit int value // The value to perform the bitwise "and" with
 		(this & value)
 	
 	// Check if a certain bit it set
@@ -92,7 +92,7 @@ immutable struct int
 	//         int health
 	//         changeHealth: int delta
 	//             health = (health + delta) limit 0..100
-	inline js int limit: int from // The inclusive minimum value
+	important inline js int limit: int from // The inclusive minimum value
 		                 int to   // The inclusive maximum value
 		(this < from ? from : this > to ? to : this)
 		
@@ -121,7 +121,7 @@ immutable struct int
 	// Make sure the value never falls below a minimum value
 	// Example: Make sure the score never fall below 0
 	//     score = score atLeast 0
-	inline js int atLeast: int value
+	important inline js int atLeast: int value
 		(this < value ? value : this)
 	
 	inline js float atLeast: float value
@@ -130,7 +130,7 @@ immutable struct int
 	// Make sure the value never exceets a maximum value
 	// Example: Make sure the card count never exceets a maximum value of 5
 	//     cardCount = cardCount atMost 5
-	inline js int atMost: int value
+	important inline js int atMost: int value
 		(this > value ? value : this)
 	
 	inline js float atMost: float value
@@ -139,16 +139,16 @@ immutable struct int
 	inline js int setIfLarger: int newValue
 		(this = Math.max(newValue, this))
 		
-	inline js int incrementAndWrap: int max // When the integer reaches this value, it wraps around to zero
+	important inline js int incrementAndWrap: int max // When the integer reaches this value, it wraps around to zero
 		(this = (((this+1) % max) + max) % max)
 	
-	inline js int decrementAndWrap: int max // When the integer reaches this value, it wraps around to zero
+	important inline js int decrementAndWrap: int max // When the integer reaches this value, it wraps around to zero
 		(this = (((this-1) % max) + max) % max)
 	
-	inline js int incrementUpTo: int max
+	important inline js int incrementUpTo: int max
 		(this < max ? ++this : max)
 		
-	inline js int incrementUpToExclusive: int max
+	important inline js int incrementUpToExclusive: int max
 		(this < max-1 ? ++this : max-1)
 		
 	inline js int incrementBy: int value
@@ -214,16 +214,16 @@ immutable struct float
 		(((this % value) + value) % value)
 		
 	// The largest possible floating point value
-	const inline js float maxValue := Number.MAX_VALUE
+	const important inline js float maxValue := Number.MAX_VALUE
 	
 	// The smallest possible floating point value
-	const inline js float minValue := -Number.MAX_VALUE
+	const important inline js float minValue := -Number.MAX_VALUE
 	
 	// Indicates that the variable isn't defined at all, useful for imported data (e.g. from JSON)
 	const inline js int undefined := undefined
 	
 	// Positiv infinity
-	const inline js float infinity := Number.POSITIVE_INFINITY
+	const important inline js float infinity := Number.POSITIVE_INFINITY
 	
 	const inline js float epsilon := Number.EPSILON
 	
@@ -237,7 +237,7 @@ immutable struct float
 	const inline js float notANumber := Number.NaN
 	
 	// The remainer after a division by the given value. The sign stays the same.
-	inline js float remainder: float value
+	important inline js float remainder: float value
 		(this % value)
 		
 	inline js int toInt := Math.floor(this)
@@ -245,9 +245,9 @@ immutable struct float
 	// Returns true if the floot is not zero
 	inline js bool toBool := this
 	
-	inline js string toString := this.toString()
+	important inline js string toString := this.toString()
 		
-	inline js string format: int fractionDigits, int minIntegerDigits = 1, bool grouping = false
+	important inline js string format: int fractionDigits, int minIntegerDigits = 1, bool grouping = false
 		this.toLocaleString("en-US", {maximumFractionDigits:fractionDigits, minimumFractionDigits:fractionDigits, minimumIntegerDigits:minIntegerDigits, useGrouping:grouping})
 		
 	inline js string format: int fractionDigits, bool grouping = false
@@ -257,26 +257,26 @@ immutable struct float
 		this.toLocaleString("en-US", {minimumIntegerDigits:minIntegerDigits, useGrouping:grouping})
 		
 	// Returns the absolute value
-	inline js float abs
+	important inline js float abs
 		Math.abs(this)
 		
 	// Returns -1, 0, or 1 depending on the sign of the value
-	inline js float sign
+	important inline js float sign
 		Math.sign(this)
 		
 	// Returns the smallest integer greater than or equal to the given value 
-	inline js int ceil
+	important inline js int ceil
 		Math.ceil(this)
 		
 	// Returns the largest integer less than or equal to the given value
-	inline js int floor
+	important inline js int floor
 		Math.floor(this)
 		
 	// Returns the given value rounded to the nearest integer
-	inline js int round
+	important inline js int round
 		Math.round(this)
 		
-	inline js float limit: float from
+	important inline js float limit: float from
 		                   float to
 		(this < from ? from : this < to ? this : to)
 		
@@ -286,17 +286,17 @@ immutable struct float
 	inline js float limit: float from
 		(this < from ? from : this)
 	
-	inline js float atLeast: float value
+	important inline js float atLeast: float value
 		(this < value ? value : this)
 	
-	inline js float atMost: float value
+	important inline js float atMost: float value
 		(this > value ? value : this)
 	
-	inline js bool isApproximately: float value
+	important inline js bool isApproximately: float value
 		                            float epsilon = 0.00001
 		(Math.abs(this - value) < epsilon)
 		
-	inline js float moveTowards: float value
+	important inline js float moveTowards: float value
 		                         float speed = 1
 		(this < value ? (this + speed < value ? (this += speed) : (this = value)) : (this - speed > value ? (this -= speed) : (this = value)))
 		
@@ -342,28 +342,28 @@ immutable class string
 	inline string >= string value
 	
 	// Returns the number of characters in the string
-	inline js int length := this.length
+	important inline js int length := this.length
 	
 	// Returns a string with each character converted to uppercase
-	inline js string toUpperCase := this.toUpperCase()
+	important inline js string toUpperCase := this.toUpperCase()
 		
 	// Returns a string with each character converted to lowercase
-	inline js string toLowerCase := this.toLowerCase()
+	important inline js string toLowerCase := this.toLowerCase()
 	
 	// Returns true if the string is not null and not empty	
 	inline js bool toBool := this
 	inline js string toString() this
-	inline js int toInt := parseInt(this)
-	inline js int toFloat := parseFloat(this)
-	inline js dynamic parseJson() JSON.parse(this)
+	important inline js int toInt := parseInt(this)
+	important inline js int toFloat := parseFloat(this)
+	important inline js dynamic parseJson() JSON.parse(this)
 		
-	inline js int parseInt(int radix) parseInt(this, radix)
+	important inline js int parseInt(int radix) parseInt(this, radix)
 	
 	// Indicates that the variable isn't defined at all, useful for imported data (e.g. from JSON)
 	const inline js string undefined := undefined
 	
 	// Splits the string at the given character into a list of substrings
-	inline js string[] split: string seperator = "," // Separate the string at this character
+	important inline js string[] split: string seperator = "," // Separate the string at this character
 		this.split(seperator)
 		
 	string[] splitByLine: string seperator = "\n" // Separate the string at this character
@@ -386,25 +386,25 @@ immutable class string
 		                     string seperator = ","       // Separate the string at this character
 		return selector(this.split(seperator))
 		
-	inline js bool startsWith(string str) this.startsWith(str)
-	inline js bool endsWith(string str) this.endsWith(str)
+	important inline js bool startsWith(string str) this.startsWith(str)
+	important inline js bool endsWith(string str) this.endsWith(str)
 		
-	inline js int indexOf(string str) this.indexOf(str)
-	inline js int indexOf(string str, int startPos) this.indexOf(str, startPos)
+	important inline js int indexOf(string str) this.indexOf(str)
+	important inline js int indexOf(string str, int startPos) this.indexOf(str, startPos)
 		
-	inline js int lastIndexOf(string str) this.lastIndexOf(str)
-	inline js int lastIndexOf(string str, int startPos) this.lastIndexOf(str, startPos)
+	important inline js int lastIndexOf(string str) this.lastIndexOf(str)
+	important inline js int lastIndexOf(string str, int startPos) this.lastIndexOf(str, startPos)
 		
-	inline js bool contains(string str) this.includes(str)
+	important inline js bool contains(string str) this.includes(str)
 		
 	inline js int getCharCodeAt(int index) this.charCodeAt(index)
 		
 	static inline js string fromCharCode(int charCode) String.fromCharCode(charCode)
 		
-	inline js string substring: int from
+	important inline js string substring: int from
 		this.substring(from)
 		
-	inline js string substring: int from = 0
+	important inline js string substring: int from = 0
 		                        int to
 		this.substring(from, to)
 		
@@ -443,7 +443,7 @@ immutable class string
 	inline js int compareTo: string value // The string to compare to
 		this.localeCompare(value)
 		
-	inline js string trim
+	important inline js string trim
 		this.trim()
 		
 	js string trimQuotes
@@ -498,7 +498,7 @@ immutable class string
 	inline js string get: int from = 0
 		this.substring(from)
 		
-	js string capitalize
+	important js string capitalize
 		return this.length > 0 ? this[0].toUpperCase() + this.substring(1) : this
 		
 	string capitalizeWords
@@ -593,7 +593,7 @@ class List<T>
 		}
 			
 	// Add an item to the end of the list
-	inline js void add: T item // The item to add
+	important inline js void add: T item // The item to add
 		this.push(item)
 		
 	inline js void add: T item  // The item to add
@@ -629,16 +629,16 @@ class List<T>
 		this.push(...items)
 			
 	// Add an list of item to the end of the list
-	inline js void addRange: T[] items // The list of items to add
+	important inline js void addRange: T[] items // The list of items to add
 		this.push(...items)
 			
 	// Insert an item at a given index
-	inline js void insert: T item    // The item to insert
+	important inline js void insert: T item    // The item to insert
 		                   index = 0 // Insert the item at this index
 		this.splice(index, 0, item)
 		
 	// Insert an item at a given index
-	inline js void insert: T item    // The item to insert
+	important inline js void insert: T item    // The item to insert
 		                   T after
 		this.splice(this.indexOf(after)+1, 0, item)
 		
@@ -647,7 +647,7 @@ class List<T>
 	//     Player
     //         die
     //             players.remove me
-	js void remove: T item // The item to remove
+	important js void remove: T item // The item to remove
 		var index = this.indexOf(item);
 		if(index > -1) this.splice(index, 1);
 			
@@ -705,13 +705,13 @@ class List<T>
 		}
 		
 	// Remove the item at the given index from the list
-	inline js void removeAt: int index // The index of the item to remove
+	important inline js void removeAt: int index // The index of the item to remove
 		this.splice(index, 1)
 			
 	// Remove a range of items from the list
 	// Example: Remove the first 3 players from the list
 	//     players.removeRange 0 to 3
-	inline js void removeRange: int from = 0   // Remove items starting from this index
+	important inline js void removeRange: int from = 0   // Remove items starting from this index
 		                        nocolon int to // Remove items up to (but not including) this index
 		this.splice(from, to-from)
 			
@@ -723,7 +723,7 @@ class List<T>
 	//      app
     //          gameOver
     //              players.removeWhere.hasDied
-	removeWhere: bool(T a) condition // The condition to check
+	important removeWhere: bool(T a) condition // The condition to check
 		for this <-
 			if condition(.)
 				removeAt i
@@ -736,7 +736,7 @@ class List<T>
 	//     app
     //         gameOver
     //             players.removeFirstWhere.health < 10
-	T removeFirstWhere: bool(T a) condition // The condition to check
+	important T removeFirstWhere: bool(T a) condition // The condition to check
 		for this
 			if condition(.)
 				removeAt i
@@ -744,12 +744,12 @@ class List<T>
 		return null
 	
 	// Add an item to the list if it isn't already in there
-	js void ensure: T item // The item to add
+	important js void ensure: T item // The item to add
 		if(!this.includes(item))
 			this.push(item)
 		
 	// Add each item from a list if it isn't already in there
-	js void ensure: T[] items // The list of items to add
+	important js void ensure: T[] items // The list of items to add
 		for(let it of items)
 			if(!this.includes(it))
 				this.push(it)
@@ -760,23 +760,23 @@ class List<T>
 		else            this.push(item)
 		
 	// Returns whether the list contains the given item
-	inline js bool contains: T item // Check if the list contains this item
+	important inline js bool contains: T item // Check if the list contains this item
 		this.includes(item)
 		
-	bool containsAny: T[] list
+	important bool containsAny: T[] list
 		for list
 			if this contains .
 				return true
 		return false
 		
-	bool containsNone: T[] list
+	important bool containsNone: T[] list
 		for list
 			if this contains .
 				return false
 		return true
 		
 	// The index of an item in the list
-	inline js int indexOf: T item // Get the index of this item
+	important inline js int indexOf: T item // Get the index of this item
 		this.indexOf(item)
 		
 	inline js void setList: T[] list
@@ -801,13 +801,13 @@ class List<T>
 	// Example: Print and remove "Orange" from the list
 	//     let fruits = ["Apple", "Lemon", "Orange"]
 	//     print fruits.pop
-	inline js T pop := this.pop()
+	important inline js T pop := this.pop()
 		
 	// Remove an item at a specific index from the list and return it
 	// Example: Print and remove "Lemon" from the list
 	//     let fruits = ["Apple", "Lemon", "Orange"]
 	//     print fruits.popAt 1
-	inline js T popAt: int index
+	important inline js T popAt: int index
 		this.splice(index, 1)[0]
 		
 	// Remove a range of items from the list and return a new list containing the removed items
@@ -821,7 +821,7 @@ class List<T>
 	// Remove the first item that meet a given condition and return it
 	// Exmaple: Remove the first player with a health below 10
 	//     let firstActivePlayer = players.popWhere.health < 10
-	T popWhere: bool(T a) condition // The condition for the item to meet
+	important T popWhere: bool(T a) condition // The condition for the item to meet
 		for length()
 			let item = get(i)
 			if condition(item)
@@ -833,7 +833,7 @@ class List<T>
 	// Example: Print and remove "Apple" from the list
 	//     let fruits = ["Apple", "Lemon", "Orange"]
 	//     print fruits.popFirst
-	inline js T popFirst
+	important inline js T popFirst
 		this.shift()
 	
 	// Gets the number of items in the list
@@ -844,7 +844,7 @@ class List<T>
 		this.length = length
 	
 	// Removes all items from the list
-	inline js void clear := this.length = 0
+	important inline js void clear := this.length = 0
 	
 	// Create a shallow clone of the list
 	inline js T[] clone() [...this]
@@ -859,25 +859,25 @@ class List<T>
 		return "["+result+"]"
 		
 	// Gets a random item from the list
-	T random()
+	important T random()
 		let randomInteger = math.randomInteger(length)
 		return get(randomInteger)
 		
-	T randomWhere: bool(T a) condition
+	important T randomWhere: bool(T a) condition
 		let filteredList = this.where(condition)
 		int index = math.randomInteger(filteredList.length)
 		T item = filteredList[index]
 		return item
 	
 	// Remove a random item from the list and return it
-	T popRandom()
+	important T popRandom()
 		if length == 0: return null
 		int index = math.randomInteger(length)
 		T item = get(index)
 		this.removeAt(index)
 		return item
 		
-	T popRandomWhere: bool(T a) condition
+	important T popRandomWhere: bool(T a) condition
 		let filteredList = this.where(condition)
 		int index = math.randomInteger(filteredList.length)
 		T item = filteredList[index]
@@ -929,7 +929,7 @@ class List<T>
 	inline js bool toBool := (this != null && this.length != 0) 
 	
 	// Reverses the order of the items of the list in place
-	inline js T[] reverse() this.reverse()
+	important inline js T[] reverse() this.reverse()
 		
 	inline js T[] reversed() [...this].reverse()
 		
@@ -937,7 +937,7 @@ class List<T>
 	inline js T[] distinct() [...new Set(this)]
 	
 	// Moves an item to the end of the list
-	js void moveToBack: T item // The item to move to the end of the list
+	important js void moveToBack: T item // The item to move to the end of the list
 		var index = this.indexOf(item);
 		if(index != -1) {
 			let endIndex = this.length-1;
@@ -948,7 +948,7 @@ class List<T>
 		}
 		
 	// Moves an item to the end of the list
-	js void moveToFront: T item // The item to move to the end of the list
+	important js void moveToFront: T item // The item to move to the end of the list
 		var index = this.indexOf(item);
 		if(index != -1) {
 			for(let i=index; i>0; --i) {
@@ -968,14 +968,14 @@ class List<T>
 		this.sort(comparer)
 	
 	// Sort the list by a given expression
-	T[] orderBy: float(T a) expression // First order by this expression
+	important T[] orderBy: float(T a) expression // First order by this expression
 		return this.sort(expression(a) - expression(b))
 		
 	T[] orderBy: float(T it) expression           // First order by this expression
 		         label nocolon float(T it) thenBy // Then order by this expression
 		return this.sort(expression(a) - expression(b) || thenBy(a) - thenBy(b))
 		
-	T[] orderBy: float(T it) expression            // First order by this expression
+	important T[] orderBy: float(T it) expression            // First order by this expression
 		         label nocolon string(T it) thenBy // Then order by this expression
 		return this.sort(expression(a) - expression(b) || thenBy(a) compareTo thenBy(b))
 		
@@ -987,7 +987,7 @@ class List<T>
 		return this.sort(expression(a) compareTo expression(b))
 		
 	// Sort the list by a given expression
-	T[] orderBy: float(T a) expression // First order by this expression
+	important T[] orderBy: float(T a) expression // First order by this expression
 		         SortingOrder order    // Specifies if you want to sort in ascending or descending order
 		if order == Ascending: return this.sort(expression(a) - expression(b))
 		else                   return this.sort(expression(b) - expression(a))
@@ -1002,25 +1002,25 @@ class List<T>
 		else                   return this.sort(expression(b) - expression(a))
 		
 	// Returns true if the given condition is true for any item in the list
-	inline js bool any: bool(T a) predicate // The condition to check
+	important inline js bool any: bool(T a) predicate // The condition to check
 		this.some(predicate)
 		
-	inline js bool none: bool(T a) predicate // The condition to check
+	important inline js bool none: bool(T a) predicate // The condition to check
 		!this.some(predicate)
 		
 	// Returns true if the given condition is true for all items in the list
-	inline js bool all: bool(T a) predicate // The condition to check
+	important inline js bool all: bool(T a) predicate // The condition to check
 		this.every(predicate)
 		
 	// Return a list that contains the selected field or expression for each item
-	inline js TValue[] select: TValue(
+	important inline js TValue[] select: TValue(
 		                           T it,  // The current item of the list
 		                           int i  // The index of the current item of the list
 		                       ) selector // Selects a field or expression for each item
 		this.map(selector)
 		
 	// Get the selected field or expression for each item and flattens the result
-	inline js TValue[] flatten: TValue[](T it) selector
+	important inline js TValue[] flatten: TValue[](T it) selector
 		this.flatMap(selector)
 		
 	// Find an item the meets the given condition
@@ -1028,7 +1028,7 @@ class List<T>
 	//     app
 	//         getPlayerById: int id
 	//             return players.find.id == id
-	inline js T find: bool(T a) condition // The condition to check
+	important inline js T find: bool(T a) condition // The condition to check
 		this.find(condition)
 		
 	inline js T find: backwards bool(T a) condition // The condition to check
@@ -1078,7 +1078,7 @@ class List<T>
 		return false
 		
 	// Find the index of the item the meets the given condition
-	int indexWhere: bool(T a) condition // The condition to check
+	important int indexWhere: bool(T a) condition // The condition to check
 		            int startIndex = 0  // Start searching at this index
 		for startIndex to length
 			if condition(this[.])
@@ -1101,7 +1101,7 @@ class List<T>
 				return i
 		return -1
 		
-	inline js T[] where: bool(T a) condition // The condition to check
+	important inline js T[] where: bool(T a) condition // The condition to check
 		this.filter(condition)
 		
 	T[] except: T item 
@@ -1111,10 +1111,10 @@ class List<T>
 				result.add .
 		return result
 		
-	inline js T[] take: int count
+	important inline js T[] take: int count
 		this.slice(0, count)
 		
-	int total: int(T it) selector
+	important int total: int(T it) selector
 		let sum = 0
 		for this: sum += selector(.)
 		return sum
@@ -1147,7 +1147,7 @@ class List<T>
 			result += selector(.)
 		return result
 		
-	shuffle
+	important shuffle
 		for 1 to length <- i
 			var j = math.floor(math.randomFloat * (i + 1))
 			var temp = this.get(i)
@@ -1177,7 +1177,7 @@ class List<T>
 			if value < resultValue: resultValue = value
 		return resultValue != threshold ? resultValue : default
 		
-	min: float(T a) selector 
+	important min: float(T a) selector 
 		 float threshold = float.maxValue
 		 float default = 0
 		float resultValue = threshold
@@ -1226,7 +1226,7 @@ class List<T>
 			if value > resultValue: resultValue = value
 		return resultValue != threshold ? resultValue : default
 		
-	max: float(T a) selector
+	important max: float(T a) selector
 		 float threshold = float.minValue
 		 float default = 0
 		float resultValue = threshold
@@ -1287,7 +1287,7 @@ class List<T>
 			if value == resultValue: resultValue = threshold
 		return resultValue != threshold ? resultValue : default
 		
-	minIndex: float(T a) selector
+	important minIndex: float(T a) selector
 		      int startIndex = 0
 		      float threshold = float.maxValue
 		float resultValue = threshold
@@ -1299,7 +1299,7 @@ class List<T>
 				index = i
 		return index
 		
-	maxIndex: float(T a) selector
+	important maxIndex: float(T a) selector
 		      int startIndex = 0
 		      float threshold = float.minValue
 		float resultValue = threshold
@@ -1322,7 +1322,7 @@ class List<T>
 				resultItem = .
 		return resultValue != threshold ? resultItem : null
 		
-	withMin: float(T a) selector
+	important withMin: float(T a) selector
 		     float threshold = float.maxValue
 		float resultValue = threshold
 		T resultItem
@@ -1394,7 +1394,7 @@ class List<T>
 				resultItem = .
 		return resultValue != threshold ? resultItem : null
 		
-	withMax: float(T a) selector
+	important withMax: float(T a) selector
 		     float threshold = float.minValue
 		float resultValue = threshold
 		T resultItem
@@ -1472,7 +1472,7 @@ class List<T>
 					resultItem = .
 		return resultValue != threshold ? resultItem : null
 		
-	count: bool(T a) predicate
+	important count: bool(T a) predicate
 		int count = 0
 		for this
 			if predicate(.)
@@ -1492,7 +1492,7 @@ class List<T>
 	rotate: int count
 		for count: insert pop
 		
-	js T[] intersectWith: T[] other
+	important js T[] intersectWith: T[] other
 		const a = this || []
 		const b = other || []
 		const result = [];
@@ -1506,13 +1506,13 @@ class List<T>
 		return result;
 		
 	// The first item of the list
-	inline js T first() this[0]
+	important inline js T first() this[0]
 	
 	// The second item of the list
 	inline js T second() this[1]
 	
 	// The last item of the list
-	inline js T last() this[this.length-1]
+	important inline js T last() this[this.length-1]
 		
 	// Get an item from the list
 	inline js T get: implicit int index // The index of the item to get
@@ -1609,20 +1609,20 @@ class Map<TKey, TValue>
 		this.set(key, this.get(key)-1)
 		
 	// Remove the item assosiated with the given key
-	inline js void remove: TKey key  // The key of the item to remove from the map
+	important inline js void remove: TKey key  // The key of the item to remove from the map
 		this.delete(key)
 		
 	// Does the map have an item with a specific key?
-	inline js bool has: TKey key // The key of the item to check
+	important inline js bool has: TKey key // The key of the item to check
 		this.has(key)
 		
 	// Remove all items from the map
-	inline js void clear
+	important inline js void clear
 		this.clear()
 		
-	inline js int length() this.size
+	important inline js int length() this.size
 		
-	js void removeWhere: bool(TValue it) condition // The condition to check
+	important js void removeWhere: bool(TValue it) condition // The condition to check
 		for(var pair of this) {
 			if(condition(pair[1])) {
 				this.delete(pair[0]);
@@ -1640,24 +1640,24 @@ class Set<T>
 		this.has(value)
 	
 	// Add a new element to this set, if there isn't already an element with the same value
-	inline js void add: T value // The value to add
+	important inline js void add: T value // The value to add
 		this.add(value)
 
 	// Remove a value from the set
-	inline js void remove: T value // The value to remove
+	important inline js void remove: T value // The value to remove
 		this.delete(value)
 		
 	// Is a certain value in the set?
-	inline js bool has: T value // The value to check
+	important inline js bool has: T value // The value to check
 		this.has(value)
 	inline js T[] toList() [...this]
 		
 	// Remove all items from the set
-	inline js void clear
+	important inline js void clear
 		this.clear()
 		
 	// Return the number of items in the set
-	inline js int length() this.size
+	important inline js int length() this.size
 
 // Specifies that a function doesn't return a value
 immutable struct void
@@ -1678,7 +1678,7 @@ interface object
 	inline js bool toBool() (this != null)
 	// inline js string toString() object_stringify(this, 3)
 		
-	static inline js string toJson(any value) JSON.stringify(value)
+	important static inline js string toJson(any value) JSON.stringify(value)
 	static inline js string toFormattedJson(any value) JSON.stringify(value, null, "\t")
 	static inline js bool isEqualAndSameType(any a, any b) (a === b)
 		
@@ -2092,26 +2092,26 @@ global transient priority low unit System
 // A collection of mathematical functions and constants
 global skipInit unit math
 	// Returns the absolute value
-	inline js int abs: int value // The value to return the absolute value of
+	important inline js int abs: int value // The value to return the absolute value of
 		Math.abs(value)
 		
 	// Returns the absolute value
-	inline js float abs: float value // The value to return the absolute value of
+	important inline js float abs: float value // The value to return the absolute value of
 		Math.abs(value)
 		
 	// Returns -1, 0, or 1 depending on the sign of the value
-	inline js float sign: float value
+	important inline js float sign: float value
 		Math.sign(value)
 		
 	// Returns the positive square root of the given value
-	inline js float sqrt: float value // The value to return the square root of
+	important inline js float sqrt: float value // The value to return the square root of
 		Math.sqrt(value)
 		
 	inline js float hypot: float a
 		                   float b
 		Math.hypot(a, b)
 		
-	moveTowards: float value
+	important moveTowards: float value
 		         float targetValue
 		         float speed = 1
 		if targetValue > value: return math.min(value + speed, targetValue) else
@@ -2120,7 +2120,7 @@ global skipInit unit math
 	// ------------------------------------------------------- floor, ceil, round -------------------------------------------------------
 		
 	// Returns the largest integer less than or equal to the given value
-	inline js int floor: float value // The value to round down
+	important inline js int floor: float value // The value to round down
 		Math.floor(value)
 		
 	// Returns the largest integer less than or equal to the given value
@@ -2128,7 +2128,7 @@ global skipInit unit math
 		Math.floor(value)
 		
 	// Returns the smallest integer greater than or equal to the given value 
-	inline js int ceil: float value // The value to round up
+	important inline js int ceil: float value // The value to round up
 		Math.ceil(value)
 		
 	// Returns the smallest integer greater than or equal to the given value 
@@ -2136,7 +2136,7 @@ global skipInit unit math
 		Math.ceil(value)
 		
 	// Returns the given value rounded to the nearest integer
-	inline js int round: float value // The value to round
+	important inline js int round: float value // The value to round
 		Math.round(value)
 		
 	// Returns the given value rounded to the nearest integer
@@ -2150,7 +2150,7 @@ global skipInit unit math
 		Math.min(a, b)
 		
 	// Returns the smallest of the given values
-	inline js float min: float a // The first value
+	important inline js float min: float a // The first value
 		                 float b // The second value
 		Math.min(a, b)
 		
@@ -2160,7 +2160,7 @@ global skipInit unit math
 		Math.max(a, b)
 		
 	// Returns the largest of the given values
-	inline js float max: float a // The first value
+	important inline js float max: float a // The first value
 		                 float b // The second value
 		Math.max(a, b)
 		
@@ -2202,25 +2202,25 @@ global skipInit unit math
 	// ------------------------------------------------------- Trigonometry in turns -------------------------------------------------------
 	
 	// Returns the sine of an angle in turns
-	sin: implicit Angle angle // The angle in turns (one full rotation is 1)
+	important sin: implicit Angle angle // The angle in turns (one full rotation is 1)
 	    float result = cast(angle - .5 - math.floor(angle))
 	    result *= 16 * (math.abs(result) - .5)
 	    result += .225 * result * (math.abs(result) - 1)
 	    return result
 
 	// Returns the cosine of an angle in turns
-	cos: implicit Angle angle // The angle in turns (one full rotation is 1)
+	important cos: implicit Angle angle // The angle in turns (one full rotation is 1)
 	    float result = cast(angle - .25 - math.floor(angle + .25))
 	    result *= 16 * (math.abs(result) - .5)
 	    result += .225 * result * (math.abs(result) - 1)
 	    return result
 	
 	// Returns the tangent of an angle in turns
-	tan: implicit Angle angle
+	important tan: implicit Angle angle
 		return sin(angle) / cos(angle)
 		
 	// Returns the inverse tangent in turns
-	Angle atan2: float y, float x
+	important Angle atan2: float y, float x
 		float r
 		Angle angle
 		float abs_x = math.abs(x) + .00000000001
@@ -2237,33 +2237,33 @@ global skipInit unit math
 	// ------------------------------------------------------- log, pow, exp -------------------------------------------------------
 	
 	// e raised to which power resuls in the given value?
-	inline js float log: float value
+	important inline js float log: float value
 		Math.log(value)
 		
 	// 2 raised to which power resuls in the given value?
-	inline js float log2: float value
+	important inline js float log2: float value
 		Math.log2(value)
 		
 	// 10 raised to which power resuls in the given value?
-	inline js float log10: float value
+	important inline js float log10: float value
 		Math.log10(value)
 		
 	// Return the given base raised to the power of the given exponent
-	inline js float pow: float base
+	important inline js float pow: float base
 		                 float exponent
 		Math.pow(base, exponent)
 		
 	// Returns e raised to the power of a given number
-	inline js float exp: float exponent
+	important inline js float exp: float exponent
 		Math.exp(exponent)
 		
 	// ------------------------------------------------------- Bit shifts -------------------------------------------------------
 	
-	inline js int shiftLeft: int value
+	important inline js int shiftLeft: int value
 		                     int count
 		(value << count)
 	
-	inline js int shiftRight: int value
+	important inline js int shiftRight: int value
 		                      int count
 		(value >> count)
 			

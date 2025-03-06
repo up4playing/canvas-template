@@ -387,13 +387,11 @@ transient skipInit global unit graphics
 	// Draw an image. Place a PNG file in the "media" folder and it will automatically be imported.
 	// 
 	// Example: We place an image called "Idle.png" in the "media" folder. Then, we draw this image at the position {0,0}, scale it to a width of 32 pixels. Only the current player instance will see the image.
-	// ```
 	//     Player
 	//         tick
 	//             drawImage Idle, position:{0,0}, size:32, frame:0, visibleFor:me
-	// ```
 	// Image: drawImage0.png
-	global js void drawImage: Image image                         // The image to draw. PNG images in the "media" folder will automatically show up here
+	global important js void drawImage: Image image                         // The image to draw. PNG images in the "media" folder will automatically show up here
 		                      Vector2 position = {}               // By default, {0,0} is the center, {-960,-540} is the top left, {960,540} is the bottom right
 		                      implicit Vector2 size = {}          // A float scales the image to that width keeping the aspect ratio, a vector stretches the image
 		                      implicit Player[] visibleFor = null // Only this player or list of players will see the image
@@ -433,7 +431,7 @@ transient skipInit global unit graphics
 	//             drawImage Idle, position:{0,0}, angle:45°
 	// ```
 	// Image: drawImage1.png
-	global js void drawImage: Image image                         // The image to draw. PNG images in the "media" folder will automatically show up here
+	global important js void drawImage: Image image                         // The image to draw. PNG images in the "media" folder will automatically show up here
 		                      Vector2 position = {}               // By default, {0,0} is the center, {-960,-540} is the top left, {960,540} is the bottom right
 		                      implicit Vector2 size = {}          // A float scales the image to that width keeping the aspect ratio, a vector stretches the image
 		                      implicit Player[] visibleFor = null // Only this player or list of players will see the image
@@ -482,7 +480,7 @@ transient skipInit global unit graphics
 	//             drawImage Walk, position:{0,0}, framesPerSecond:10
 	// ```
 	// Image: drawImage2.gif
-	global void drawImage: Image image                         // The image to draw. PNG images in the "media" folder will automatically show up here
+	global important void drawImage: Image image                         // The image to draw. PNG images in the "media" folder will automatically show up here
 		                   Vector2 position = {}               // By default, {0,0} is the center, {-960,-540} is the top left, {960,540} is the bottom right
 		                   implicit Vector2 size = {}          // A float scales the image to that width keeping the aspect ratio, a vector stretches the image
 		                   implicit Player[] visibleFor = null // Only this player or list of players will see the image
@@ -503,7 +501,7 @@ transient skipInit global unit graphics
 	//             drawImage Walk, position:{0,0}, framesPerSecond:10, flipX:true
 	// ```
 	// Image: drawImage3.gif
-	global void drawImage: Image image                          // The image to draw. PNG images in the "media" folder will automatically show up here
+	global important void drawImage: Image image                          // The image to draw. PNG images in the "media" folder will automatically show up here
 		                   Vector2 position = {}                // By default, {0,0} is the center, {-960,-540} is the top left, {960,540} is the bottom right
 		                   implicit Vector2 size = {}           // A float scales the image to that width keeping the aspect ratio, a vector stretches the image
 		                   implicit Player[] visibleFor = null  // Only this player or list of players will see the image
@@ -528,7 +526,7 @@ transient skipInit global unit graphics
 	//                 print "The image was clicked at {touch.position}"
 	// ```
 	// Image: drawImage0.png
-	global void drawImage: Image image                          // The image to draw. PNG images in the "media" folder will automatically show up here
+	global important void drawImage: Image image                          // The image to draw. PNG images in the "media" folder will automatically show up here
 		                   Vector2 position = {}                // By default, {0,0} is the center, {-960,-540} is the top left, {960,540} is the bottom right
 		                   implicit Vector2 size = {}           // A float scales the image to that width keeping the aspect ratio, a vector stretches the image
 		                   implicit Player[] visibleFor = null  // Only this player or list of players will see the image
@@ -568,7 +566,7 @@ transient skipInit global unit graphics
 	//                 drawText "You've won!", size:100, color:Black, font:OpenSans, visibleFor:me
 	// ```
 	// Image: drawText.png
-	global drawText: implicit string text                 // A string or anything that can be converted into a string (for example, an interger or a float)
+	global important drawText: implicit string text                 // A string or anything that can be converted into a string (for example, an interger or a float)
 		             Vector2 position = {}                // By default, {0,0} is the center, {-960,-540} is the top left, {960,540} is the bottom right
 		             implicit Vector2 size = {}           // The font size of the text
 		             Color color = null                   // The color of the text
@@ -732,7 +730,7 @@ transient skipInit global unit graphics
 	//         { "\"" to: "\"" color:White, backgroundColor:app.helpingColor, padding:{12,3}, cornerRadius:12 }
 	//     ]
 	// ```
-	global float drawTextWithHighlight: implicit string text                 // A string or anything that can be converted into a string (for example, an interger or a float)
+	global important float drawTextWithHighlight: implicit string text                 // A string or anything that can be converted into a string (for example, an interger or a float)
 		                                Vector2 position = {}                // By default, {0,0} is the center, {-960,-540} is the top left, {960,540} is the bottom right
 		                                TextHighlight[] highlights = []      // Sepecifies which characters surround a sections and how it should be highlighted
 		                                implicit Vector2 size = {}           // The font size of the text
@@ -917,7 +915,7 @@ transient skipInit global unit graphics
 	//     drawVideo me, position:pos, shape:Circle, size:radius*2-40
 	//     drawCircularText "Made up by", position:pos, size:30, radius, angle:-.07
 	// ```
-	global drawCircularText: implicit string text                 // A string or anything that can be converted into a string (for example, an interger or a float)
+	global important drawCircularText: implicit string text                 // A string or anything that can be converted into a string (for example, an interger or a float)
 		                     Vector2 position = {}                // By default, {0,0} is the center, {-960,-540} is the top left, {960,540} is the bottom right
 		                     float size = 0                       // The font size of the text
 		                     Color color = null                   // The color of the text
@@ -954,7 +952,7 @@ transient skipInit global unit graphics
 	//                     done = true
 	// ```
 	// Image: drawButton.png
-	global void drawButton: Image image = null                   // The image of the button. PNG images in the "media" folder will automatically show up here
+	global important void drawButton: Image image = null                   // The image of the button. PNG images in the "media" folder will automatically show up here
 		                    text = ""                            // The text of the button
 		                    Vector2 position = {}                // By default, {0,0} is the center, {-960,-540} is the top left, {960,540} is the bottom right
 		                    implicit Vector2 size = {}           // A float scales the image to that width keeping the aspect ratio, a vector stretches the image
@@ -1019,7 +1017,7 @@ transient skipInit global unit graphics
 	//             drawRectangle size:{500,100}, color:White, outlineColor:Black, outlineWidth:8
 	// ```
 	// Image: drawRectangle.png
-	global js void drawRectangle: position = Vector2()                // By default, {0,0} is the center, {-960,-540} is the top left, {960,540} is the bottom right
+	global important js void drawRectangle: position = Vector2()                // By default, {0,0} is the center, {-960,-540} is the top left, {960,540} is the bottom right
 		                          implicit size = Vector2(256,256)    // The size of the rectangle, use a float to draw a square, use a vector to draw a rectangle
 		                          Color color = null                  // The color of the area within the rectangle
 		                          Color outlineColor = null           // The color of the outline around the rectangle
@@ -1055,7 +1053,7 @@ transient skipInit global unit graphics
 	//             drawRoundedRectangle size:{500,100}, outlineColor:Black, outlineWidth:8, radius:20
 	// ```
 	// Image: drawRoundedRectangle.png
-	global js void drawRoundedRectangle: position = Vector2()                // By default, {0,0} is the center, {-960,-540} is the top left, {960,540} is the bottom right
+	global important js void drawRoundedRectangle: position = Vector2()                // By default, {0,0} is the center, {-960,-540} is the top left, {960,540} is the bottom right
 		                                 implicit size = Vector2(256,256)    // The size of the rectangle, use a float to draw a square, use a vector to draw a rectangle
 		                                 radius = 32                         // The radius of the rounded corners
 		                                 Color color = null                  // The color of the area within the rectangle
@@ -1110,7 +1108,7 @@ transient skipInit global unit graphics
 	//             drawCircle outlineColor:#118ab2, outlineWidth:24, size:100, startAngle:0°, angle:180°
 	// ```
 	// Image: drawCircle2.png
-	global js void drawCircle: position = Vector2()                    // By default, {0,0} is the center, {-960,-540} is the top left, {960,540} is the bottom right
+	global important js void drawCircle: position = Vector2()                    // By default, {0,0} is the center, {-960,-540} is the top left, {960,540} is the bottom right
 		                       implicit Vector2 size = {256,256}       // The size of the circle, use a float to draw a circle, use a vector draw an ellipse
 		                       Color color = null                      // The color of the area within the circle
 		                       Color outlineColor = null               // The color of the outline around the circle
@@ -1150,7 +1148,7 @@ transient skipInit global unit graphics
 	//             drawLine {-100,0} to {100,0} color:Blue
 	// ```
 	// Image: drawLine.png
-	global js void drawLine: Vector2 from                        // The point to start the line from
+	global important js void drawLine: Vector2 from                        // The point to start the line from
 		                     nocolon Vector2 to                  // The point to draw the line to
 		                     Color color = null                  // The color of the line
 		                     width = 0                           // The width of the line in pixels
@@ -1179,7 +1177,7 @@ transient skipInit global unit graphics
 	//             drawLines [{-50,0}, {0,50}, {100,-50}] color:Blue width:32
 	// ```
 	// Image: drawLines.png
-	global js void drawLines: Vector2[] points                    // A list of points for the line
+	global important js void drawLines: Vector2[] points                    // A list of points for the line
 		                      Vector2 position = {}               // The position all points are relative to 
 		                      Color color = null                  // The color of the line
 		                      width = 0                           // The width of the line in pixels
@@ -1213,7 +1211,7 @@ transient skipInit global unit graphics
 	//             drawPolygon [{-50,50}, {0,-50}, {50,50}] color:White outlineColor:Blue
 	// ```
 	// Image: drawPolygon.png
-	global js void drawPolygon: Vector2[] points                    // A list of points for the polygon
+	global important js void drawPolygon: Vector2[] points                    // A list of points for the polygon
 		                        Vector2 position = {0,0}            // The position all polygon points are relative to
 		                        Color color = null                  // The color of the area within the polygon
 		                        Color outlineColor = null           // The color of the outline around the polygon
@@ -1248,7 +1246,7 @@ transient skipInit global unit graphics
 	//             drawVideo me, size:200
 	// ```
 	// Image: drawVideo.png
-	global drawVideo: Player player                       // Draw the video showing this player
+	global important drawVideo: Player player                       // Draw the video showing this player
 		              Vector2 position = {}               // By default, {0,0} is the center, {-960,-540} is the top left, {960,540} is the bottom right
 		              implicit Vector2 size = {440}       // A float scales the image to that width keeping the aspect ratio, a vector stretches the video
 		              VideoShape shape = Rectangle        // Choose whether the video should be drawn as a rectangle, a square or a circle
@@ -1278,7 +1276,7 @@ transient skipInit global unit graphics
 	//             drawPointer me
 	// ```
 	// Image: drawPointer.png
-	global drawPointer: Player player                  // Show the mouse position of this player
+	global important drawPointer: Player player                  // Show the mouse position of this player
 		                ShowPointersMode mode = Remote // Choose whether you want to draw the pointers for local players, remote players or both
 		                Color color = null             // The color of the pointer. If this is left out, the player color is used
 		if mode == LocalAndRemote

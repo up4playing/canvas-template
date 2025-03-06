@@ -142,7 +142,7 @@ Color
 		fx.interpolate this, target, delay, duration, this = .
 
 transient global skipInit unit audio
-	global playSound: Sound sound
+	global important playSound: Sound sound
 		              Time delay = 0
 		              bool needsToBeCertain = false
 		if needsToBeCertain and not input.isCertain: return
@@ -155,7 +155,7 @@ transient global skipInit unit audio
 		else
 			sound.play	
 				
-	global static playSound: Sound sound
+	global important static playSound: Sound sound
 		              nocolon Time at = 0
 		              bool needsToBeCertain = false
 		if needsToBeCertain and not input.isCertain: return

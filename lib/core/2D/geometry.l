@@ -5,25 +5,25 @@ struct Vector2
 	SourceCodeLocation location
 	
 	// Used to specify that the vector is not set or invalid
-	static inline Vector2 none() Vector2(float.infinity, float.infinity, null)
+	static important inline Vector2 none() Vector2(float.infinity, float.infinity, null)
 	
 	// {float.minValue, float.minValue}
-	static inline Vector2 minValue() Vector2(float.minValue, float.minValue, null)
+	static important inline Vector2 minValue() Vector2(float.minValue, float.minValue, null)
 	
 	// {float.maxValue, float.maxValue}
-	static inline Vector2 maxValue() Vector2(float.maxValue, float.maxValue, null)
+	static important inline Vector2 maxValue() Vector2(float.maxValue, float.maxValue, null)
 	
 	// {0,0}
-	static inline Vector2 zero() Vector2(0, 0, null)
+	static important inline Vector2 zero() Vector2(0, 0, null)
 		
 	// A string representation of the vector
-	string toString() := "{x} {y}"
+	important string toString() := "{x} {y}"
 	
 	// Returns true if the vector is not equal to Vector2.none
 	bool toBool := (x != float.infinity || y != float.infinity)
 	
 	// Creates a copy of the vector with the same values
-	Vector2 clone() := {x, y, location}
+	important Vector2 clone() := {x, y, location}
 		
 	// Create a new instance. Useful for data imported from json where the vector might be undefined
 	inline js Vector2 create: float x // The x-coordinate of the vector to create
@@ -154,37 +154,37 @@ struct Vector2
 	// bool operator <= (Vector2 a, float length) let x = a.x, y = a.y; return math.sqrt(x*x + y*y) <= length
 	
 	// The length of the vector
-	length := math.sqrt(x * x + y * y)
+	important length := math.sqrt(x * x + y * y)
 		
 	// The sign of each coordinate
-	sign := Vector2(math.sign(x), math.sign(y))
+	important sign := Vector2(math.sign(x), math.sign(y))
 		
 	// The square of the length of the vector
-	lengthSquared := x * x + y * y
+	important lengthSquared := x * x + y * y
 		
 	// Make the vector orthogonal to the existing vector
-	orthogonal
+	important orthogonal
 		x = -y
 		y = x
 		return this
 		
 	// Flip the sign of each coordinate
-	invert
+	important invert
 		x = -x
 		y = -y
 		return this
 		
 	// Round each coordinate to the closest integer value
-	round := IntVector2(math.round(x), math.round(y))
+	important IntVector2 round := IntVector2(math.round(x), math.round(y))
 	
 	// Round each coordinate down to an integer value
-	floor := IntVector2(math.floor(x), math.floor(y))
+	important IntVector2 floor := IntVector2(math.floor(x), math.floor(y))
 		
 	// Round each coordinate up to an integer value
-	ceil := IntVector2(math.ceil(x), math.ceil(y))
+	important IntVector2 ceil := IntVector2(math.ceil(x), math.ceil(y))
 		
 	// Make each coordinate positive
-	abs
+	important abs
 		x = math.abs(x)
 		y = math.abs(y)
 		return this
@@ -218,21 +218,21 @@ struct Vector2
 		return this
 		
 	// The distance to another vector
-	distanceTo: Vector2 value // The second vector
+	important distanceTo: Vector2 value // The second vector
 		let x = x - value.x
 		let y = y - value.y
 		return math.sqrt(x*x + y*y)
 
 	// The distance to another vector along axes at right angles
-	manhattanDistanceTo: Vector2 value // The second vector
+	important manhattanDistanceTo: Vector2 value // The second vector
 		return math.abs(x - value.x) + math.abs(y - value.y)
 
 	// The angle to another vector in turns (one full rotation is 1)
-	angleTo: Vector2 value // The second vector
+	important angleTo: Vector2 value // The second vector
 		return math.getAngleForVector(value - this)
 
 	// Ensure the vector has a length of 1
-	normalize
+	important normalize
 		let len = math.sqrt(x * x + y * y)
 		if len != 0: x = x / len; y = y / len
 		return this
@@ -241,7 +241,7 @@ struct Vector2
 	normalized := this.clone.normalize
 	
 	// Moves the vector towards the given target by the given distance	
-	moveTowards: Vector2 targetPosition // The target to move towards
+	important moveTowards: Vector2 targetPosition // The target to move towards
 		         float speed = 30       // The distance to move by
 		         void() onReachedTarget = null
 		let delta = targetPosition - this
@@ -280,14 +280,14 @@ struct Vector2
 		)
 		
 	// Returns whether the vector is within a given rectangle
-	isInsideRectangle: Vector2 center // The center of the rectangle
+	important isInsideRectangle: Vector2 center // The center of the rectangle
 		               Vector2 size   // The size of the rectangle
 		let halfSizeX = size.x/2, halfSizeY = size.y/2
 		return x >= center.x - halfSizeX && x < center.x + halfSizeX
 		    && y >= center.y - halfSizeY && y < center.y + halfSizeY
 		
 	// Returns whether the vector is within a given polygon
-	isInsidePolygon: Vector2[] poly // A list of points that make up the polygon
+	important isInsidePolygon: Vector2[] poly // A list of points that make up the polygon
 		let c = false, i = -1, l = poly.length, j = l - 1
 		while ++i < l
 			((poly[i].y <= this.y && this.y < poly[j].y) || (poly[j].y <= this.y && this.y < poly[i].y))
@@ -296,16 +296,16 @@ struct Vector2
 			j = i
 		return c
 		
-	in: Rect rectangle
+	important in: Rect rectangle
 		return x >= rectangle.position.x - rectangle.size.x/2 && x < rectangle.position.x + rectangle.size.x/2
 		    && y >= rectangle.position.y - rectangle.size.y/2 && y < rectangle.position.y + rectangle.size.y/2
 	
 	// The dot product
-	dot: Vector2 value // The value to calculate the dot procut with
+	important dot: Vector2 value // The value to calculate the dot procut with
 		return x * value.x + y * value.y
 		
 	// The cross product
-	cross: Vector2 value // The value to calculate the cross procut with
+	important cross: Vector2 value // The value to calculate the cross procut with
 		return x*value.y - y*value.x
 		
 	serialize: Buffer buffer
@@ -418,16 +418,16 @@ struct IntVector2
 	SourceCodeLocation location
 	
 	// Used to specify that the vector is not set or invalid
-	static inline IntVector2 none() IntVector2(int.minValue, int.minValue, null)
+	static important inline IntVector2 none() IntVector2(int.minValue, int.minValue, null)
 		
 	// {0,0}
-	static inline IntVector2 zero() IntVector2(0, 0, null)
+	static important inline IntVector2 zero() IntVector2(0, 0, null)
 	
 	// Creates a copy of the vector with the same values
-	IntVector2 clone := {x, y, location}
+	important IntVector2 clone := {x, y, location}
 		
 	// A string representation of the vector
-	string toString := "({x} {y})"
+	important string toString := "({x} {y})"
 	
 	// Returns true if the vector is not equal to IntVector2.none
 	bool toBool := (x != int.minValue || y != int.minValue)
@@ -503,16 +503,16 @@ struct IntVector2
 	// bool operator <= (IntVector2 a, IntVector2 b) return a.x <= b.x && a.y <= b.y
 	
 	// The length of the vector
-	length := math.sqrt(x * x + y * y)
+	important length := math.sqrt(x * x + y * y)
 		
 	// A vector that is orthogonal to the existing vector
-	orthogonal := IntVector2(x:-y, y:x)
+	important orthogonal := IntVector2(x:-y, y:x)
 		
 	// A vector with the sign of each coordinate flipped
-	inverse := IntVector2(-x, -y)
+	important inverse := IntVector2(-x, -y)
 		
 	// A vector with the absolute value of each coordinate
-	abs := IntVector2(math.abs(x), math.abs(y))
+	important abs := IntVector2(math.abs(x), math.abs(y))
 		
 	// The larger of the two coordinates
 	max := x > y ? x : y
@@ -540,7 +540,7 @@ struct IntVector2
 		)
 		
 	// The distance to another vector
-	distanceTo: IntVector2 value // The second vector
+	important distanceTo: IntVector2 value // The second vector
 		let x = x - value.x
 		let y = y - value.y
 		return math.sqrt(x*x + y*y)
@@ -552,17 +552,17 @@ struct IntVector2
 		return math.sqrt(x*x + y*y)
 
 	// The distance to another vector along axes at right angles
-	manhattanDistanceTo: IntVector2 value // The second vector
+	important manhattanDistanceTo: IntVector2 value // The second vector
 		return math.abs(x - value.x) + math.abs(y - value.y)
 		
 	// Returns whether the vector is within a given rectangle
-	isInsideRectangle: IntVector2 center, // The center of the rectangle
+	important isInsideRectangle: IntVector2 center, // The center of the rectangle
 		               IntVector2 size,   // The size of the rectangle
 		return x >= center.x - size.x/2 && x < center.x + size.x/2
 		    && y >= center.y - size.y/2 && y < center.y + size.y/2		
 
 	// The angle to another vector in turns (one full rotation is 1)
-	angleTo: IntVector2 value // The second vector
+	important angleTo: IntVector2 value // The second vector
 		return math.getAngleForVector(value - this)
 		
 	// A float vector that points in the same direction, but has a length of 1
@@ -732,7 +732,7 @@ transient immutable float Angle
 	inline js float in: AngleUnit unit
 		(unit==1 ? this*math.TwoPI : unit==2 ? this*360 : unit==3 ? this*400 : this)
 		
-	inline js Angle rotateTowards: Angle value
+	important inline js Angle rotateTowards: Angle value
 		                           Angle speed
 		(this = Angle.rotatedTowards(this, value, speed))
 		
@@ -761,7 +761,7 @@ transient immutable float Angle
 	inline bool > Angle value
 	inline bool >= Angle value
 	
-	inline js Angle normalize
+	important inline js Angle normalize
 		(((this + .5) % 1) + 1) % 1 - .5
 	
 	inline js Angle % ensureSingleExecution Angle value
@@ -846,14 +846,14 @@ global skipInit priority low unit math
 			
 global skipInit unit math
 	// Returns the arctangent of the quotient of the given values
-	Angle getAngleForVector: Vector2 vector
+	important Angle getAngleForVector: Vector2 vector
 		return math.atan2(vector.y, vector.x)
 		
-	Vector2 getVectorForAngle: Angle angle      // The angle in turns (0: straight up, 1: one full rotation clockwise)
+	important Vector2 getVectorForAngle: Angle angle      // The angle in turns (0: straight up, 1: one full rotation clockwise)
 		                       float radius = 1
 		return new Vector2(math.sin(angle)*radius, -math.cos(angle)*radius)
 		
-	Vector2 intersectLines: Vector2 startA
+	important Vector2 intersectLines: Vector2 startA
 		                    Vector2 endA
 		                    Vector2 startB
 		                    Vector2 endB
@@ -882,7 +882,7 @@ global skipInit unit math
 		// Return a object with the x and y coordinates of the intersection
 		return new Vector2(x1 + ua * (x2 - x1), y1 + ua * (y2 - y1))
 		
-	projectPointOnLine: Vector2 from, Vector2 to, LineType type = Segment, Vector2 point
+	important projectPointOnLine: Vector2 from, Vector2 to, LineType type = Segment, Vector2 point
 		let lineVector = to - from
 		let pointVector = point - from
 		let scalar = (pointVector dot lineVector) / lineVector.lengthSquared
@@ -890,7 +890,7 @@ global skipInit unit math
 		if type == Segment and scalar > 1: return Vector2.none
 		return from + lineVector * scalar
 	
-	closestPointOnLine: Vector2 from, Vector2 to, LineType type = Segment, Vector2 point
+	important closestPointOnLine: Vector2 from, Vector2 to, LineType type = Segment, Vector2 point
 		let lineVector = to - from
 		let pointVector = point - from
 		let scalar = (pointVector dot lineVector) / lineVector.lengthSquared
@@ -1049,11 +1049,11 @@ class IsometicGrid
 enum RotationDirection: Clockwise, CounterClockwise
 		
 immutable Direction
-	global const Direction Up     = {"Up",      0, { 0,-1, location:null},   0, 210°} // negative y direction (0,-1)
-	global const Direction Right  = {"Right",   1, { 1, 0, location:null}, .25, 330°} // positive x direction (1,0)
-	global const Direction Down   = {"Down",    2, { 0, 1, location:null}, .50,  30°} // positive y direction (0,1)
-	global const Direction Left   = {"Left",    3, {-1, 0, location:null}, .75, 150°} // negative x direction (-1,0)
-	global const Direction None   = {"None",   -1, { 0, 0, location:null},   0,   0°} // no direction (0,0)
+	global const important Direction Up     = {"Up",      0, { 0,-1, location:null},   0, 210°} // negative y direction (0,-1)
+	global const important Direction Right  = {"Right",   1, { 1, 0, location:null}, .25, 330°} // positive x direction (1,0)
+	global const important Direction Down   = {"Down",    2, { 0, 1, location:null}, .50,  30°} // positive y direction (0,1)
+	global const important Direction Left   = {"Left",    3, {-1, 0, location:null}, .75, 150°} // negative x direction (-1,0)
+	global const important Direction None   = {"None",   -1, { 0, 0, location:null},   0,   0°} // no direction (0,0)
 		
 	const Direction UpLeft    = {"UpLeft",    0, {-1,-1, location:null},-.125} // negative x, negative y direction (-1,-1)
 	const Direction UpRight   = {"UpRight",   1, { 1,-1, location:null}, .125} // positive x, negative y direction (1,-1)
@@ -1062,16 +1062,16 @@ immutable Direction
 		
 	
 	// List of the four primary direction: Right, Down, Left, Up
-	const Direction[] primaryDirections = [Up, Right, Down, Left]
+	const important Direction[] primaryDirections = [Up, Right, Down, Left]
 	
 	// List of the four diagonals: UpLeft, UpRight, DownLeft, DownRight
-	const Direction[] diagonalDirections = [UpLeft, UpRight, DownRight, DownLeft]
+	const important Direction[] diagonalDirections = [UpLeft, UpRight, DownRight, DownLeft]
 	
 	// The two horitontal directions: Left and Right
-	const Direction[] horizontalDirections = [Left, Right]
+	const important Direction[] horizontalDirections = [Left, Right]
 	
 	// The two vertical directions: Up and Down
-	const Direction[] verticalDirections = [Up, Down]
+	const important Direction[] verticalDirections = [Up, Down]
 	
 	// Directions that form a triangle pointing up: Up, DownRight, DownLeft
 	const Direction[] trianglePointingUp = [Up, DownRight, DownLeft]
@@ -1086,7 +1086,7 @@ immutable Direction
 	const Direction[] trianglePointingLeft = [Left, UpRight, DownRight]
 	
 	// List of the primary direction and the diagonals
-	const Direction[] allDirections = [Up, UpRight, Right, DownRight, Down, DownLeft, Left, UpLeft]
+	const important Direction[] allDirections = [Up, UpRight, Right, DownRight, Down, DownLeft, Left, UpLeft]
 
 	// The center and all surrounding directions (a 3 x 3 around the center)
 	const Direction[] centerAndAllDirections = [None, Up, UpRight, Right, DownRight, Down, DownLeft, Left, UpLeft]
@@ -1094,10 +1094,10 @@ immutable Direction
 	// The center and all horizontal and vertical directions (a cross)
 	const Direction[] centerAndPrimaryDirections = [None, Up, Right, Down, Left]
 
-	string name       // The name of the direction (e.g. "Left", "Right", "Up", "Down", "UpLeft", "DownRight", ...)
+	important string name       // The name of the direction (e.g. "Left", "Right", "Up", "Down", "UpLeft", "DownRight", ...)
 	int index         // The index starting with "Right" and going around clockwise (0: Right, 1: Down, 2: Left, 3: Up)
-	IntVector2 vector // The vector of the direction (Right: {1,0}, Down:{0,1}, Left:{-1,0}, Up:{0,-1})
-	Angle angle       // The angle in turns starting with "Right" and going around clockwise
+	important IntVector2 vector // The vector of the direction (Right: {1,0}, Down:{0,1}, Left:{-1,0}, Up:{0,-1})
+	important Angle angle       // The angle in turns starting with "Right" and going around clockwise
 	Angle isoAngle    // The angle in turns within an isometric grid
 	
 	toString := name
@@ -1154,17 +1154,17 @@ immutable Line
 	toString := "{start.x.format(fractionDigits:2)} {start.y.format(fractionDigits:2)} -> {end.x.format(fractionDigits:2)} {end.y.format(fractionDigits:2)}"
 
 immutable Rect
-	Vector2 position, size
+	important Vector2 position, size
 	
 	float left := position.x - size.x/2
 	float right := position.x + size.x/2
 	float top := position.y - size.y/2
 	float bottom := position.y + size.y/2
 	
-	bool contains: Vector2 position
+	important bool contains: Vector2 position
 		return this.position - this.size/2 <=  position < this.position + this.size/2
 	
-	bool intersectsWith: Vector2 position
+	important bool intersectsWith: Vector2 position
 		                 Vector2 size
 		return this.position - this.size/2 - size/2 <=  position < this.position + this.size/2 + size/2
 
@@ -1208,11 +1208,11 @@ class Grid<T>
 		for(let _size=this.size, y=0, _items=this.items; y<_size.y; ++y) for(let x=0; x<_size.x; ++x) do(_items[y*_size.x + x], new IntVector2(x,y), i)}
 		
 	// Return a list that contains the selected field or expression for each item
-	inline js TValue[] select: TValue(T it) selector
+	important inline js TValue[] select: TValue(T it) selector
 		this.items.map(selector)
 		
 	// Get the selected field or expression for each item and flattens the result
-	inline js TValue[] flatten: TValue[](T it) selector
+	important inline js TValue[] flatten: TValue[](T it) selector
 		this.items.flatMap(selector)
 		
 	// Returns true if the given condition is true for any item in the list
@@ -1220,13 +1220,13 @@ class Grid<T>
 		this.items.some(a => a)
 		
 	// Returns true if the given condition is true for any item in the list
-	inline js bool any: bool(T a) predicate // The condition to check
+	important inline js bool any: bool(T a) predicate // The condition to check
 		this.items.some(predicate)
 		
-	inline js T[] where: bool(T a) predicate // The condition to check
+	important inline js T[] where: bool(T a) predicate // The condition to check
 		this.items.filter(predicate)
 		
-	int count: bool(T a) predicate // The condition to check
+	important int count: bool(T a) predicate // The condition to check
 		int count = 0
 		for items
 			if predicate(.)
@@ -1238,10 +1238,10 @@ class Grid<T>
 		this.items.every(a => a)
 		
 	// Returns true if the given condition is true for all items in the list
-	inline js bool all: bool(T a) predicate // The condition to check
+	important inline js bool all: bool(T a) predicate // The condition to check
 		this.items.every(predicate)
 		
-	bool isValid: IntVector2 pos
+	important bool isValid: IntVector2 pos
 		return {0,0} <= pos < size
 			
 global transient unit System
