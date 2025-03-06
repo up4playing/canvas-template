@@ -10,7 +10,7 @@ immutable Color
 		
 	const Color TransparentRed     = {"#ff000080", "Transparent Red"}
 	
-	string hex
+	important string hex
 	string name
 	
 	string toString := name or hex
@@ -24,7 +24,7 @@ immutable Color
 	inline js bool == Color other: this?.hex == other?.hex
 	inline js bool != Color other: this?.hex != other?.hex
 	
-	Color: string hex = ""
+	important Color: string hex = ""
 		this.hex = hex[0] == "#" ? hex : "#"+hex
 
 	Color: int red = 0

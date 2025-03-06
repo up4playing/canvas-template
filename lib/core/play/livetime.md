@@ -552,7 +552,6 @@ class List<T>
 	int maxIndex: float(T a) selector, int startIndex, float threshold
 	T withMin: float(T a) selector, float threshold
 	T withMax: float(T a) selector, float threshold
-	int count: bool(T a) predicate
 	T[] intersectWith: T[] other
 	T first:
 	T last:
@@ -642,6 +641,9 @@ class Vector2
 	float dot: Vector2 value
 	float cross: Vector2 value
 
+class Color
+	string hex
+
 static class audio
 	global void playSound: Sound sound, Time delay, bool needsToBeCertain
 	global void playSound: Sound sound, Time at, bool needsToBeCertain
@@ -714,6 +716,13 @@ static class graphics
 	global void drawPolygon: Vector2[] points, Vector2 position, Color color, Color outlineColor, int outlineWidth, bool smooth, Player[] visibleFor, int layer, float alpha
 	global void drawVideo: Player player, Vector2 position, Vector2 size, VideoShape shape, Player[] visibleFor
 	global void drawPointer: Player player, ShowPointersMode mode, Color color
+
+class Touch
+	bool isDown
+	Vector2 position:
+	Vector2 startPosition:
+	void markAsHandled:
+	Player by
 
 static class input
 	global void onTouchDown: Vector2 position, Vector2 size, Player[] by, Cursor cursor, bool showClickableArea, bool markAsHandled, HorizontalAlignment align, VerticalAlignment valign, void(Touch touch) do

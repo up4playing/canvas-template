@@ -1472,7 +1472,7 @@ class List<T>
 					resultItem = .
 		return resultValue != threshold ? resultItem : null
 		
-	important count: bool(T a) predicate
+	count: bool(T a) predicate
 		int count = 0
 		for this
 			if predicate(.)

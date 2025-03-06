@@ -156,24 +156,24 @@ enum TouchPhase: Still, Down, Move, Up
 enum TouchType: Left, Middle, Right, Touch, Pen
 
 // A touch or a click
-internal Touch
+Touch
 	int id
-	Player by
+	important Player by
 	TouchPhase phase
 	TouchType type
 	Vector2 referencePosition
 	Vector2 referenceStartPosition
 	Vector2 smoothPosition
-	bool isDown
+	important bool isDown
 	bool handled
 	
 	// Calculate position and startPositio dynamically to ensure it is always valid and relative to the current matrix
 	// even if we never check the touch with a input.onTouch method
 	
-	Vector2 position := referencePosition.getRelativeTo(graphics.localMatrix)
-	Vector2 startPosition := referenceStartPosition.getRelativeTo(graphics.localMatrix)
+	important Vector2 position := referencePosition.getRelativeTo(graphics.localMatrix)
+	important Vector2 startPosition := referenceStartPosition.getRelativeTo(graphics.localMatrix)
 	
-	markAsHandled() handled = true
+	important markAsHandled() handled = true
 	
 internal transient ScrollEvent
 	immutable int userId
