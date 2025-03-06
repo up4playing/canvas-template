@@ -276,7 +276,7 @@ transient skipInit unit Platform
 				
 skipInit transient immutable float Time
 	// The number of milliseconds elapsed since January 1, 1970
-	static Time now
+	static important Time now
 	
 	// The current frame
-	static inline js int frame := core.frame
+	static important inline js int frame := core.frame

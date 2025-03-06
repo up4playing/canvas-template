@@ -1,5 +1,6 @@
 app
 	start
+		graphics.drawingOrder = ItemsDrawnFirstWillBeInTheBack
 		Menu()
 		
 	tick
@@ -10,12 +11,12 @@ Player
 	Vector2 pos = dir.vector * {690,265}
 		
 	tick
-		// Draw score
-		float radius = 255
-		Vector2 scorePos = pos + math.getVectorForAngle(-45°)*radius
-		drawText score, scorePos, size:31
-		drawCircle scorePos, color:Black, outlineColor:color, size:60
-		
 		// Draw video
-		drawVideo me, pos, size:radius*2-75, shape:Circle
+		float radius = 255
 		drawCircle pos, size:radius*2, outlineColor:color, outlineWidth:12
+		drawVideo me, pos, size:radius*2-75, shape:Circle
+
+		// Draw score
+		Vector2 scorePos = pos + math.getVectorForAngle(-45°)*radius
+		drawCircle scorePos, color:Black, outlineColor:color, size:60
+		drawText score, scorePos, size:31

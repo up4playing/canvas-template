@@ -97,16 +97,16 @@ skipInit transient float Time
 	inline js string format: int minIntegerDigits = 1, bool grouping = false
 		this.toLocaleString('en-US', {minimumIntegerDigits:minIntegerDigits, useGrouping:grouping})
 	
-	inline js int milliseconds := Math.floor((this %    1000)          ) 
-	inline js int seconds      := Math.floor((this %   60000) /    1000) 
-	inline js int minutes      := Math.floor((this % 3600000) /   60000) 
-	inline js int hours        := Math.floor((this          ) / 3600000)
+	important inline js int milliseconds := Math.floor((this %    1000)          ) 
+	important inline js int seconds      := Math.floor((this %   60000) /    1000) 
+	important inline js int minutes      := Math.floor((this % 3600000) /   60000) 
+	important inline js int hours        := Math.floor((this          ) / 3600000)
 		
-	inline js int totalSeconds      := Math.floor(this /      1000) 
-	inline js int totalMinutes      := Math.floor(this /     60000) 
-	inline js int totalHours        := Math.floor(this /   3600000)
-	inline js int totalDays         := Math.floor(this /  86400000)
-	inline js int totalWeeks        := Math.floor(this / 604800000)
+	important inline js int totalSeconds      := Math.floor(this /      1000) 
+	important inline js int totalMinutes      := Math.floor(this /     60000) 
+	important inline js int totalHours        := Math.floor(this /   3600000)
+	important inline js int totalDays         := Math.floor(this /  86400000)
+	important inline js int totalWeeks        := Math.floor(this / 604800000)
 		
 	private static string toMinutesHoursDaysOrWeeksString: Time time, showWeeksAfterDays = 31
 		if time < 2 minutes: return "1 minute"

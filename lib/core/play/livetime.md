@@ -93,7 +93,11 @@ app
 		// Vector2 and IntVector2 are structs and therefore value types, so they can't be null. But you can set them to Vector2.none or IntVector2.none
 		IntVector2 currentGridPos = IntVector2.none
 
+		// Set enum value 
 		phase = PlacePiece
+
+		// 10 seconds from now
+		Time showMessageUntil = Time.now + 10 seconds
 		
 	// The "tick" function is called on every frame (30 times per second)
 	tick
@@ -598,6 +602,19 @@ static class math
 	static Vector2 projectPointOnLine: Vector2 from, Vector2 to, LineType type, Vector2 point
 	static Vector2 closestPointOnLine: Vector2 from, Vector2 to, LineType type, Vector2 point
 
+class Time
+	int milliseconds:
+	int seconds:
+	int minutes:
+	int hours:
+	int totalSeconds:
+	int totalMinutes:
+	int totalHours:
+	int totalDays:
+	int totalWeeks:
+	static Time now
+	static int frame:
+
 class Vector2
 	static Vector2 none:
 	static Vector2 minValue:
@@ -678,6 +695,8 @@ class Grid<T>
 	bool isValid: IntVector2 pos
 
 static class graphics
+	static DrawingOrder drawingOrder
+	static Promise<null> setup: Vector2 referenceSize
 	global void drawImage: Image image, Vector2 position, Vector2 size, Player[] visibleFor, int frame, int layer, float alpha, Color color, HorizontalAlignment align, VerticalAlignment valign
 	global void drawImage: Image image, Vector2 position, Vector2 size, Player[] visibleFor, int frame, int layer, float alpha, Color color, Angle angle, bool flipX, bool flipY
 	global void drawImage: Image image, Vector2 position, Vector2 size, Player[] visibleFor, int framesPerSecond, int layer, float alpha, Color color

@@ -249,7 +249,7 @@ transient skipInit global unit graphics
 	private const alignmentFactor = [0, .5, 1]
 	
 	public Vector2 referenceSize = {1920, 1080}
-	public DrawingOrder drawingOrder = ItemsDrawnFirstWillBeInFront
+	public important DrawingOrder drawingOrder = ItemsDrawnFirstWillBeInFront
 	public ScaleMode scaleMode = Auto, effectiveScaleMode
 	public AnchorMode anchor = Center
 	
@@ -260,7 +260,7 @@ transient skipInit global unit graphics
 	internal Vector2 size
 	internal float pixelRatio
 	
-	internal async setup: Vector2 referenceSize
+	important async setup: Vector2 referenceSize
 		this.referenceSize = referenceSize
 	
 	internal js void onResize
