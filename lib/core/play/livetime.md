@@ -96,8 +96,8 @@ app
 		// Set enum value 
 		phase = PlacePiece
 
-		// 10 seconds from now
-		Time showMessageUntil = Time.now + 10 seconds
+		// Time.now returns the current time in milliseconds
+		Time halfASecondFromNow = Time.now + 500 milliseconds
 		
 	// The "tick" function is called on every frame (30 times per second)
 	tick
