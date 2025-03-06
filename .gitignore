@@ -3,8 +3,8 @@
 /.livetime/state.json
 /.livetime/navigation.json
 /.cursor/rules/
-/.github/copilot-instructions.md
-/docs/index.html
-/docs/blank.html
-/docs/*.js
+/.github
+/assets/index.html
+/assets/blank.html
+/assets/*.js
 /backup/
